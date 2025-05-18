@@ -1,42 +1,71 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class Teacher {
+class teacher {
 private:
     double salary;
 
 public:
-    // attributes
     string name, department, subject;
 
-    // method to change department
-    void changeDepartment(string newDepartment) {
-        department = newDepartment;
+    // Non-parameterized constructor
+    teacher() {
+        department = "CS";
     }
 
-    // getter
-    void getSalary() {
+    // Parameterized constructor
+    teacher(string name, string department, string subject) {
+        this->name = name;
+        this->department = department;
+        this->subject = subject;
+    }
+
+    // Copy constructor
+    teacher(const teacher &orgobj);
+
+    // Methods
+    void change_department(string new_department) {
+        department = new_department;
+    }
+
+    void setsalary(double s) {
+        salary = s;
+    }
+
+    double getsalary() {
+        return salary;
+    }
+
+    void getinfo() {
+        cout << "Name is: " << name << endl;
+        cout << "Subject is: " << subject << endl;
+        cout << "Department is: " << department << endl;
         cout << "Salary is: " << salary << endl;
-    }
-
-    // setter
-    void setSalary(double newSalary) {
-        salary = newSalary;
     }
 };
 
+// Define copy constructor outside class
+teacher::teacher(const teacher &orgobj) {
+    this->name = orgobj.name;
+    this->department = orgobj.department;
+    this->subject = orgobj.subject;
+    this->salary = orgobj.salary;
+}
+
 int main() {
-    Teacher t1;
+    teacher t1("Shan", "Computer Science", "C++");
+    t1.setsalary(50000);
+    t1.getinfo();
 
-    string a = t1.name = "Muhammad Zeeshan";
-    t1.department = "Computer Science";
-    t1.subject = "C++";
+    cout << "\nThe data for teacher 2 is:" << endl;
+    teacher t2("Ahmad", "Mechanical", "MEA");
+    t2.setsalary(60000);
+    t2.getinfo();
 
-    t1.setSalary(10000);      // ✅ Set the salary
-    t1.getSalary();           // ✅ Print the salary
-
-    cout << a << endl;        // ✅ Print the name
+    // Copy constructor usage
+    cout << "\nAfter using copy constructor (teacher 3 from teacher 2):" << endl;
+    teacher t3(t2); // Invokes copy constructor
+    t3.getinfo();
 
     return 0;
 }
-//leraned classes objects methods and attributes and encapsulation
