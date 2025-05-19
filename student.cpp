@@ -18,10 +18,10 @@ class Student{
     this->cgpaptr=obj.cgpaptr;
 
   }
-  void getinfo(){
+  void getinfo()
+  {
     cout<<"name is"<<name<<endl;
     cout<<"cgpa is"<<*cgpaptr<<endl;
-
   }
 
 
