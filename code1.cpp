@@ -20,8 +20,13 @@ public:
         this->subject = subject;
     }
 
-    // Copy constructor
-    teacher(const teacher &orgobj);
+    // Copy constructor (defined inside the class)
+    teacher(const teacher &orgobj) {
+        this->name = orgobj.name;
+        this->department = orgobj.department;
+        this->subject = orgobj.subject;
+        this->salary = orgobj.salary;
+    }
 
     // Methods
     void change_department(string new_department) {
@@ -43,14 +48,6 @@ public:
         cout << "Salary is: " << salary << endl;
     }
 };
-
-// Define copy constructor outside class
-teacher::teacher(const teacher &orgobj) {
-    this->name = orgobj.name;
-    this->department = orgobj.department;
-    this->subject = orgobj.subject;
-    this->salary = orgobj.salary;
-}
 
 int main() {
     teacher t1("Shan", "Computer Science", "C++");
